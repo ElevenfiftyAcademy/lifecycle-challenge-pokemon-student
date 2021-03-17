@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './PokeFetch.css';
-// import Timer from './Timer';
+
 
 
 class PokeFetch extends Component {
