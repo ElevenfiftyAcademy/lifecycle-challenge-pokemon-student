@@ -1,15 +1,14 @@
-import React, { Component } from 'react'
-import './PokeFetch.css';
-
+import React, { Component } from "react";
+import "./PokeFetch.css";
 
 class PokeFetch extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      pokeInfo: '',
-      pokeSprite: '',
-      pokeName: '',
-    }
+      pokeInfo: "",
+      pokeSprite: "",
+      pokeName: "",
+    };
   }
 
   fetchPokemon() {
@@ -17,29 +16,36 @@ class PokeFetch extends Component {
     let max = Math.floor(152);
     let pokeNum = Math.floor(Math.random() * (max - min) + min);
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokeNum}`, {
-      method: 'GET'
-    }).then(res => res.json())
-      .then(res => {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((res) => {
         this.setState({
           pokeInfo: res,
           pokeSprite: res.sprites.front_default,
           pokeName: res.species.name,
-        })
+        });
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
   }
 
   render() {
     return (
-      <div className={'wrapper'}>
-        <button className={'start'} onClick={() => this.fetchPokemon()}>Start!</button>
-        <h1 className={'timer'} >Timer Display</h1>
-        <div className={'pokeWrap'}>
-          <img className={'pokeImg'} src={this.state.pokeSprite} />
-          <h1 className={'pokeName'}>{this.state.pokeName}</h1>
+      <div className={"wrapper"}>
+        <button className={"start"} onClick={() => this.fetchPokemon()}>
+          Start!
+        </button>
+        <h1 className={"timer"}>Timer Display</h1>
+        <div className={"pokeWrap"}>
+          <img
+            className={"pokeImg"}
+            src={this.state.pokeSprite}
+            alt="pokemon"
+          />
+          <h1 className={"pokeName"}>{this.state.pokeName}</h1>
         </div>
       </div>
-    )
+    );
   }
 }
 
